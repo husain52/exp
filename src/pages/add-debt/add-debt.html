@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Dr/Cr Amount</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <simple-notifications></simple-notifications>
+
+    <form [formGroup]="debtForm" (ngSubmit)="saveData()" class="form-style-1">
+
+      <ion-item no-lines>
+        <ion-label stacked>Date <span class="required">*</span></ion-label>
+        <ion-input class="formstyling" (tap)="selectdate(0)" tappable  formControlName="date" required readonly></ion-input>
+      </ion-item>
+
+      <ion-item no-lines>
+        <ion-label stacked>Type <span class="required">*</span></ion-label>
+        <ion-select class="formstyling" formControlName="type" name="type" (ionChange)="typeSelected($event)">
+          <ion-option value="0">Credit</ion-option>
+          <ion-option value="1">Debit</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item no-lines>
+        <ion-label stacked>Amount <span class="required">*</span></ion-label>
+        <ion-input class="formstyling" type="number"  formControlName="amount" name="amount"></ion-input>
+      </ion-item>
+
+      <ion-item no-lines>
+          <ion-label stacked>Details <span class="required">*</span></ion-label>
+          <ion-input #input class="formstyling" formControlName="details" name="details"></ion-input>
+      </ion-item>
+
+      <!-- <ion-item no-lines>
+          <ion-label stacked>Due Date <span class="required">*</span></ion-label>
+          <ion-input class="formstyling" (tap)="selectdate(1)" tappable  formControlName="duedate" required="" readonly></ion-input>
+      </ion-item> -->
+
+      <ion-item class="center" no-lines>
+      <button ion-button round type="submit" [disabled]="debtForm.invalid">Save Data</button>
+      </ion-item>
+
+    </form>
+
+
+
+
+</ion-content>

@@ -1,0 +1,65 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Category List</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="addCategory()">
+          <ion-icon name="add-circle"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-grid>
+        <ion-row>
+
+
+            <ion-col col-6 *ngFor="let category of category; let id= index;">
+
+                        <ion-card class="cardborder" *ngIf="category.id>2">
+
+                            <!-- <ion-card-header [ngClass]="category.type === 0 ? 'income' : 'expense'">
+                                 <div>
+                                    <ion-icon style="font-size: 32px;" [name]="category.icon"></ion-icon>
+                                    <b>{{category.name}}</b>
+                                </div>
+                            </ion-card-header> -->
+
+
+                            <ion-card-content>
+
+                              <div style="display: flex;" [ngClass]="category.type === 0 ? 'inco' : 'expe'">
+                                <div class="card1 card-1" [ngClass]="category.type === 0 ? 'inc' : 'exp'">
+                                    <ion-icon class="mar-right" style="font-size: 32px;" [name]="category.icon"></ion-icon>
+                                </div>
+
+                                <div style="padding-top: 18px; display: flex; flex-direction: column;">
+                                <span class="cat-size">{{category.name | truncate:[9, '..'] }}</span>
+                                <p [ngClass]="category.type === 0 ? 'income' : 'expense'">{{category.typename}}</p>
+                              </div>
+                              </div>
+
+                            </ion-card-content>
+                            <ion-icon
+                            *ngIf="category.id>2"
+                            class="deleteicon"
+                           (click)="deleteCategory(category.id)"
+                           name="md-trash">
+                           </ion-icon>
+                        </ion-card>
+
+
+
+
+
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>

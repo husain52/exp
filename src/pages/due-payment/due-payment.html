@@ -1,0 +1,70 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Due Payment</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="addRecord()">
+          <ion-icon name="add-circle"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+ <ion-content>
+
+  <ion-segment color="secondary" [(ngModel)]="segmentType">
+    <ion-segment-button value="remaining" (ionSelect)="typeSelected(0)" #myDiv>
+      <b>Remaining</b>
+    </ion-segment-button>
+
+    <ion-segment-button value="completed" (ionSelect)="typeSelected(1)" #myDiv>
+      <b>Completed</b>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list>
+
+  <ion-item-sliding class="margin" #slide *ngFor="let record of debtRecord; let dataid= index;" nopadding>
+
+    <ion-item nopadding>
+
+    <div style="display: flex;flex-direction: row;">
+      <div style="order: 1;">
+          <div class="card1 card-1" [ngClass]="record.type === 0 ? 'inc' : 'exp'">
+            <ion-icon class="mar-right" style="font-size: 22px;" [name]="record.icon"></ion-icon>
+         </div>
+        <p class="incomeexpense" [ngClass]="record.type === 1 ? 'odd' : 'even'">{{record.typename | truncate:[9, '..']}}</p>
+      </div>
+
+      <div style="order: 2;margin: 16px 0 0 5px;">
+          <p style="color: black;font-size: 1rem"><b>{{record.date}}</b></p>
+          <p style="color: gray;font-size: 1.1rem"><b>{{record.details}}</b></p>
+      </div>
+    </div>
+
+
+          <h4 item-end>
+          <ion-badge class="topposition" [ngClass]="record.type === 0 ? 'inc' : 'exp'"><b>र{{record.amount}}</b></ion-badge>
+          <br>
+        </h4>
+
+      </ion-item>
+      <ion-item-options side="right" *ngIf="!typeFlag">
+
+        <button ion-button color="primary" (click)="editData(record.id,slide)">
+            <ion-icon style="font-size: 22px; margin: 0px !important;" name="md-create"></ion-icon>
+            <div class="text">Edit</div></button>
+
+        <button style="margin-left: 2px;"ion-button color="other" (click)="deleteData(record.id,dataid,slide)">
+             <ion-icon style="font-size: 22px; margin: 0px !important;" name="md-checkmark-circle-outline"></ion-icon>
+            <div class="text">Delete</div></button>
+
+      </ion-item-options>
+    </ion-item-sliding>
+
+
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,175 @@
+
+<!-- <ion-header #head>
+   <ion-navbar>
+      <ion-title>
+          My Expense
+        </ion-title>
+   </ion-navbar>
+
+
+      <ion-card>
+          <ion-card-content>
+               <div style="background: rgb(218, 216, 216)">
+                  <ion-segment color="secondary" [(ngModel)]="segmentType">
+
+                      <ion-segment-button value="all" (ionSelect)="typeSelected(2)" #myDiv>
+                          <b>All</b>
+                        </ion-segment-button>
+
+                      <ion-segment-button value="income" (ionSelect)="typeSelected(0)" #myDiv>
+                        <b>Income</b>
+                      </ion-segment-button>
+
+                      <ion-segment-button value="expense" (ionSelect)="typeSelected(1)">
+                        <b>Expense</b>
+                      </ion-segment-button>
+                    </ion-segment>
+              </div>
+
+                <div style="display: block; margin-top: 10px;">
+                  <canvas #doughnutCanvas></canvas>
+                </div>
+          </ion-card-content>
+        </ion-card>
+
+</ion-header>
+
+
+  <ion-content fullscreen hide-header [header]="head">
+             <ion-list>
+
+
+                <ion-item-sliding class="margin" #slide *ngFor="let expense of expenses; let dataid= index;" nopadding>
+                  <ion-item nopadding>
+
+
+               <div style="display: flex;flex-direction: row;">
+                      <div style="order: 1;">
+                      <div class="card1 card-1" [ngClass]="expense.type === 0 ? 'inc' : 'exp'">
+                        <ion-icon style="font-size: 22px;" [name]="expense.icon"></ion-icon>
+                     </div>
+                    <p class="incomeexpense" [ngClass]="expense.type === 1 ? 'odd' : 'even'">{{expense.categoryname | truncate:[9, '..']}}</p>
+                    </div>
+
+                    <div style="order: 2;margin: 16px 0 0 5px;">
+                      <p style="color: black;font-size: 1rem"><b>{{expense.date}}</b></p>
+                      <p style="color: gray;font-size: 1.1rem"><b>{{expense.description}}</b></p>
+                    </div>
+                    </div>
+
+
+                      <h4 item-end>
+                      <ion-badge class="topposition" [ngClass]="expense.type === 0 ? 'inc' : 'exp'"><b>र{{expense.amount}}</b></ion-badge>
+                      <br>
+                    </h4>
+
+                  </ion-item>
+                  <ion-item-options side="right">
+
+                    <button ion-button color="primary" (click)="editData(expense.rowid,slide)">
+                        <ion-icon style="font-size: 22px; margin: 0px !important;" name="md-create"></ion-icon>
+                        <div class="text">Edit</div></button>
+
+                    <button style="margin-left: 2px;"ion-button color="other" (click)="deleteData(expense.rowid,dataid,slide)">
+                         <ion-icon style="font-size: 22px; margin: 0px !important;" name="trash"></ion-icon>
+                        <div class="text">Delete</div></button>
+
+                  </ion-item-options>
+                </ion-item-sliding>
+
+              </ion-list>
+
+  </ion-content> -->
+
+
+
+
+  <ion-header #head>
+    <ion-navbar>
+      <ion-title>
+          My Expense
+        </ion-title>
+   </ion-navbar>
+
+  <shrinking-segment-header [scrollArea]="myContent" headerHeight="250">
+    <ion-card>
+      <ion-card-content>
+           <div style="background: rgb(218, 216, 216)">
+              <ion-segment color="secondary" [(ngModel)]="segmentType">
+
+                  <ion-segment-button value="all" (ionSelect)="typeSelected(2)" #myDiv>
+                      <b>All</b>
+                    </ion-segment-button>
+
+                  <ion-segment-button value="income" (ionSelect)="typeSelected(0)" #myDiv>
+                    <b>Income</b>
+                  </ion-segment-button>
+
+                  <ion-segment-button value="expense" (ionSelect)="typeSelected(1)">
+                    <b>Expense</b>
+                  </ion-segment-button>
+                </ion-segment>
+          </div>
+
+            <div style="display: block; margin-top: 10px;">
+              <canvas #doughnutCanvas></canvas>
+            </div>
+      </ion-card-content>
+    </ion-card>
+  </shrinking-segment-header>
+
+
+  </ion-header>
+
+  <ion-content class="home" fullscreen #myContent>
+
+    <ion-list>
+
+
+      <ion-item-sliding class="margin" #slide *ngFor="let expense of expenses; let dataid= index;" nopadding>
+        <ion-item nopadding>
+
+
+     <div style="display: flex;flex-direction: row;">
+            <div style="order: 1;">
+            <div class="card1 card-1" [ngClass]="expense.type === 0 ? 'inc' : 'exp'">
+              <ion-icon class="mar-right" style="font-size: 22px;" [name]="expense.icon"></ion-icon>
+           </div>
+          <p class="incomeexpense" [ngClass]="expense.type === 1 ? 'odd' : 'even'">{{expense.categoryname | truncate:[9, '..']}}</p>
+          </div>
+
+          <div style="order: 2;margin: 16px 0 0 5px;">
+            <p style="color: black;font-size: 1rem"><b>{{expense.date}}</b></p>
+            <p style="color: gray;font-size: 1.1rem"><b>{{expense.description}}</b></p>
+          </div>
+          </div>
+
+
+            <h4 item-end>
+            <ion-badge class="topposition" [ngClass]="expense.type === 0 ? 'inc' : 'exp'"><b>र{{expense.amount}}</b></ion-badge>
+            <br>
+          </h4>
+
+        </ion-item>
+        <ion-item-options side="right">
+
+          <button ion-button color="primary" (click)="editData(expense.rowid,slide)">
+              <ion-icon style="font-size: 22px; margin: 0px !important;" name="md-create"></ion-icon>
+              <div class="text">Edit</div></button>
+
+          <button style="margin-left: 2px;"ion-button color="other" (click)="deleteData(expense.rowid,dataid,slide)">
+               <ion-icon style="font-size: 22px; margin: 0px !important;" name="trash"></ion-icon>
+              <div class="text">Delete</div></button>
+
+        </ion-item-options>
+      </ion-item-sliding>
+
+
+    </ion-list>
+
+  </ion-content>
+
+
+
+
+

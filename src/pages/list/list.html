@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{title}}
+    </ion-title>
+     <ion-buttons end>
+     <button ion-button icon-only (click)="presentPopover($event)">
+       <ion-icon name="more"></ion-icon>
+       </button>
+    </ion-buttons> 
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list [virtualScroll]="expenses">
+
+        <!-- <ion-card > -->
+        <ion-item-sliding class="margin" #slide *virtualItem="let expense; let i = index;" nopadding>
+          <ion-item nopadding>
+    
+            <div style="display: flex;flex-direction: row;">
+              <div style="order: 1;">
+              <div class="card1 card-1" [ngClass]="expense.type === 0 ? 'inc' : 'exp'">
+                <ion-icon style="font-size: 22px;margin: 0px !important;" [name]="expense.icon"></ion-icon>
+             </div>
+             <p class="incomeexpense" [ngClass]="expense.type === 1 ? 'odd' : 'even'">{{expense.categoryname}}</p>
+            </div>
+
+            <div style="order: 2;margin: 16px 0 0 5px;">
+              <p style="color: black;font-size: 1rem"><b>{{expense.date}}</b></p>
+              <p style="color: gray;font-size: 1.1rem"><b>{{expense.description}}</b></p>
+            </div>
+            </div>
+                  
+    
+              <h4 item-end>
+              <ion-badge class="topposition" [ngClass]="expense.type === 0 ? 'inc' : 'exp'"><b>र{{expense.amount}}</b></ion-badge>
+              <br>
+            </h4>
+    
+          </ion-item>
+          <ion-item-options side="right">
+    
+            <button ion-button color="primary" (click)="editData(expense.rowid,slide)">
+                <ion-icon style="font-size: 22px; margin: 0px !important;" name="md-create"></ion-icon>
+                <div class="text">Edit</div></button>
+    
+            <button style="margin-left: 2px;"ion-button color="other" (click)="deleteData(expense.rowid,slide)">
+                 <ion-icon style="font-size: 22px; margin: 0px !important;" name="trash"></ion-icon>
+                <div class="text">Delete</div></button>
+    
+          </ion-item-options>
+        </ion-item-sliding>
+    
+      <!-- </ion-card> -->
+      </ion-list>
+</ion-content>
+<!-- <ion-footer>
+  <ion-toolbar>
+    <ion-title>Balance: ${{balance}}</ion-title>
+  </ion-toolbar>
+</ion-footer> -->

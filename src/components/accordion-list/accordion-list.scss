@@ -1,0 +1,38 @@
+accordion-list {
+    .nomargin {
+        margin: 0 !important;
+    }
+
+    .accordion-header {
+        color: white;
+        background: #F4511E !important;
+
+        .item-inner {
+            margin-left: 0 !important;
+        }
+
+        ion-icon {
+            transition: all .25s ease-in;
+            transform: rotate(0);
+        }
+    }
+
+    .active ion-icon:not(.notransformstyle) {
+        transform: rotate(90deg);
+    }
+
+    .accordion-content {
+        transition: 0.3s ease-in-out;
+        &.active {
+            padding: .75rem;   //When use as Expandable list remove comment
+            //padding: 0px;
+        }
+    }
+
+    .label {
+        margin: 0px;
+    }
+  
+  
+}
+

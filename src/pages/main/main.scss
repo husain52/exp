@@ -1,0 +1,22 @@
+page-main {
+
+
+    .tabs .tabbar {
+        background-color: #F4511E;
+
+
+           a.tab-button[aria-selected=true]{
+            color: white;
+            .tab-button-icon {
+                color: white;
+            }
+        }
+
+         // a.tab-button[aria-selected=true]:nth-of-type(1) {
+        //     color: green;
+        //     .tab-button-icon {
+        //         color: green;
+        //     }
+        // }
+    }
+}

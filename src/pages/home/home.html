@@ -1,14 +1,130 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      My Expense
     </ion-title>
+    <!-- <ion-buttons end>
+      <button ion-button icon-only (click)="addData()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons> -->
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<div class="fixed-header year-view">
+
+   <ion-grid nopadding>
+    <div class="scroll2">
+      <ion-row nowrap>
+        <ion-col col-3 *ngFor="let item of year; let i=index" (click)="getmonthdata(item.year)">
+          <div class="card1 card-1" [class.active-year]="selectedYear==item.year">
+            <p class="font-year">{{item.year}}</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+</div>
+
+<ion-content class="ion-content-below-year-view">
+
+<!-- <timeline-time [time]="item.time"></timeline-time> -->
+
+<ion-item>
+  <ion-icon name="ios-cash" item-start class="sav-color"></ion-icon>
+  Savings
+  <ion-badge item-end>{{savings}}</ion-badge>
+</ion-item>
+
+  <timeline endIcon="md-checkmark">
+    <timeline-item *ngFor="let item of monthIncome; let id = index">
+
+      <ion-icon [name]="item.icon"></ion-icon>
+      <ion-card class="wid-100">
+
+
+        <accordion-list [title]="item.monthname" [amount]="item.total" textColor="#FFF" hasMargin="false"
+          headerColor="#F53D3D" [expanded]="index === 0">
+
+          <div class="grid-flex">
+            <ion-chip style="background-color: #EAFAEA;" (click)="toggleIncome(0, id)" [class.active-type]="selectedType==0">
+              <ion-icon class="nostyle notransformstyle" name="md-star-outline"></ion-icon>
+              <ion-label style="margin-right: 12px !important;font-weight: bold;">Income</ion-label>
+            </ion-chip>
+            <ion-chip style="background-color: #ffe5e5;" (click)="toggleIncome(1, id)" [class.active-type]="selectedType==1">
+              <ion-icon class="nostyle notransformstyle" name="md-star-outline"></ion-icon>
+              <ion-label style="margin-right: 12px !important;font-weight: bold;">Expense</ion-label>
+            </ion-chip>
+          </div>
+
+          <div>
+
+            <ion-grid class="nopadding">
+
+              <ion-row class="center">
+                <ion-col col-8 *ngFor="let cate of item.data; let dataid= index;">
+
+                    <!-- <ion-card class="nostyle cardborder">
+                      <ion-card-content>
+                        <div style="display: flex;" [ngClass]="cate.type === 0 ? 'inco' : 'expe'">
+                              <div class="card-detaildata" [ngClass]="cate.type === 0 ? 'inc' : 'exp'">
+                                  <ion-icon class="nostyle notransformstyle" style="font-size: 15px;" [name]="cate.icon"></ion-icon>
+                             </div>
+                              <div style="margin-top: 10px; display: flex; flex-direction: column;">
+                              <p [ngClass]="cate.type === 0 ? 'income' : 'expense'">{{cate.name}}</p>
+                              <b style="font-size: 11px;margin-top: -5px !important;">र{{cate.amount}}</b>
+                             </div>
+                             <div class="endIcon" (click)="openCategoryWiseDetail(id,dataid)">
+                             <ion-icon
+                             style="color: black;font-size: 15px;"
+                             class="nostyle notransformstyle"
+                             name="ios-arrow-forward">
+                           </ion-icon>
+                          </div>
+                        </div>
+                     </ion-card-content>
+                 </ion-card> -->
+
+                 <div class="nostyle cardborder" (click)="openCategoryWiseDetail(id,dataid)">
+                    <div style="display: flex;">
+
+                          <div class="card-detaildata" [ngClass]="cate.type === 0 ? 'inc' : 'exp'">
+                            <ion-icon class="nostyle notransformstyle" style="font-size: 20px;" [name]="cate.icon"></ion-icon>
+                          </div>
+
+                          <div style="margin-top: 5px; margin-left: 4px; display: flex; flex-direction: column;">
+                           <b style="font-size: 1.1rem !important;" [ngClass]="cate.type === 0 ? 'income' : 'expense'">{{cate.name}}</b>
+                         </div>
+                    </div>
+                    <div style="margin-top: 3px !important;border: .5px solid rgb(210, 213, 216);width: 100%"></div>
+                    <!-- <span style="margin-left: 10px;margin-top: 8px !important;">
+                      <b style="font-size: 1.1rem !important;">र{{cate.amount}}</b>
+                    </span> -->
+                    <p style="padding-top: 5px;margin-left: 10px;font-size: 1.1rem !important;"><b>र{{cate.amount}}</b> </p>
+                </div>
+
+
+
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+
+            <button ion-button color="light" (click)="allTransaction(id)" full>All Transactions</button>
+          </div>
+        </accordion-list>
+
+
+      </ion-card>
+    </timeline-item>
+  </timeline>
+
+
 </ion-content>
+<!-- <ion-footer>
+  <ion-toolbar>
+    <ion-title>Balance: र {{balance}}</ion-title>
+  </ion-toolbar>
+</ion-footer> -->

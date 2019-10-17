@@ -1,0 +1,55 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Data</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <simple-notifications></simple-notifications>  
+  <form [formGroup]="updateExpenseForm" (ngSubmit)="updateData()" class="form-style-1">
+
+      
+    <ion-item no-lines>
+      <ion-label stacked>Date <span class="required">*</span></ion-label>
+      <ion-input class="formstyling" (tap)="selectdate()" tappable  formControlName="date" required="" readonly></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked>Type <span class="required">*</span></ion-label>
+      <ion-select class="formstyling" formControlName="type" name="type" required="" (ionChange)="typeSelected($event)">
+        <ion-option value="0">Income</ion-option>
+        <ion-option value="1">Expense</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-lines>
+        <ion-label stacked>Category <span class="required">*</span></ion-label>
+        <ion-select class="formstyling" formControlName="category" name="category" required="" (ionChange)="categorySelected($event)">
+          <ion-option *ngFor="let item of copyCategory" [value]="item.id">{{item.name}}</ion-option>
+        </ion-select>
+    </ion-item>
+    
+    <ion-item no-lines>
+      <ion-label stacked>Amount <span class="required">*</span></ion-label>
+      <ion-input class="formstyling" type="number"  formControlName="amount" name="amount"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+        <ion-label stacked>Description <span class="required">*</span></ion-label> 
+        <ion-input #input class="formstyling" formControlName="description" name="description" clearInput></ion-input>   
+    </ion-item>
+
+    <div style="text-align: center;">
+    <button ion-button round type="submit" [disabled]="updateExpenseForm.invalid">Save Data</button>
+    </div>
+
+  </form>
+
+
+
+</ion-content>
+

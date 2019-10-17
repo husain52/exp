@@ -1,0 +1,124 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Data</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <simple-notifications></simple-notifications>
+
+  <form [formGroup]="expenseForm" (ngSubmit)="saveData()" class="form-style-1">
+
+
+    <ion-item no-lines>
+      <ion-label stacked>Date <span class="required">*</span></ion-label>
+     <!-- <ion-datetime displayFormat="MM/DD/YYYY" formControlName="date" required="" readonly></ion-datetime> -->
+      <ion-input class="formstyling" (tap)="selectdate()" tappable  formControlName="date" required="" readonly></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked>Type <span class="required">*</span></ion-label>
+      <ion-select class="formstyling" formControlName="type" name="type" required="" (ionChange)="typeSelected($event)">
+        <ion-option value="0">Income</ion-option>
+        <ion-option value="1">Expense</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- <div style="display: flex;"> -->
+    <ion-item no-lines>
+        <ion-label stacked>Category <span class="required">*</span></ion-label>
+        <ion-select class="formstyling" formControlName="category" name="category" required="" (ionChange)="categorySelected($event)">
+          <ion-option *ngFor="let item of copyCategory" [value]="item.id">{{item.name}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <!-- <ion-icon item-end
+    class="categoryicon"
+    (click)="openCategory()"
+    name="md-settings">
+    </ion-icon>
+  </div> -->
+
+    <ion-item no-lines>
+      <ion-label stacked>Amount <span class="required">*</span></ion-label>
+      <ion-input class="formstyling" type="number"  formControlName="amount" name="amount"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+        <ion-label stacked>Description <span class="required">*</span></ion-label>
+        <ion-input #input class="formstyling" formControlName="description" name="description" clearInput></ion-input>
+        <!-- <div class="closeicon" item-end>
+        <ion-icon class="nostyle notransformstyle" (tap)="resetDesc()"
+        style="font-size: 20px;color: black" name="md-close-circle"></ion-icon></div> -->
+    </ion-item>
+
+    <ion-item class="center">
+    <button ion-button round type="submit" [disabled]="expenseForm.invalid">Save Data</button>
+    </ion-item>
+
+  </form>
+
+
+
+  <!-- <form [formGroup]="expenseForm" (ngSubmit)="saveData()">
+      <ul class="form-style-1">
+
+          <li>
+            <label>Date <span class="required">*</span></label>
+            <input (tap)="selectdate()" tappable  formControlName="date" required="" readonly />
+          </li>
+
+          <li>
+              <label>Type <span class="required">*</span></label>
+              <ion-select  formControlName="type" name="type" required="" (ionChange)="typeSelected($event)">
+                  <ion-option value="income">Income</ion-option>
+                  <ion-option value="expense">Expense</ion-option>
+              </ion-select>
+          </li>
+
+          <div style="display: flex;">
+
+                  <label>Category</label>
+                  <ion-select formControlName="category" name="category" required="" (ionChange)="categorySelected($event)">
+                    <ion-option *ngFor="let item of copyCategory" [value]="item.name">{{item.name}}</ion-option>
+                  </ion-select>
+
+
+              <ion-icon item-end
+              class="categoryicon"
+              (click)="openCategory()"
+              name="md-settings">
+              </ion-icon>
+          </div>
+
+          <li>
+              <label>Subject</label>
+              <select name="field4" class="field-select">
+              <option value="Advertise">Advertise</option>
+              <option value="Partnership">Partnership</option>
+              <option value="General Question">General</option>
+              </select>
+          </li>
+
+        <li>
+          <label>Amount <span class="required">*</span></label>
+          <input type="number"  formControlName="amount" name="amount"/>
+        </li>
+
+        <li>
+          <label>Description <span class="required">*</span></label>
+          <input formControlName="description" name="description"/>
+        </li>
+
+        <li>
+          <input type="submit" value="Submit" />
+        </li>
+
+      </ul>
+      </form> -->
+</ion-content>
+

@@ -1,0 +1,36 @@
+  <ion-header>
+
+    <ion-navbar>
+      <ion-title>Icons</ion-title>
+       <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+
+      <ion-grid>
+          <ion-row>
+    
+             
+              <ion-col col-2 *ngFor="let item of icons; let id= index;">
+              
+                <div (click)="slectedIcon(id)">
+                  <ion-icon [name]="item.iconName" style="color: black;font-size: 40px;"></ion-icon>
+    
+                </div>    
+
+              </ion-col>
+    
+          </ion-row>
+      </ion-grid>
+    
+  
+  </ion-content>
+  
+

@@ -1,0 +1,26 @@
+<ion-list class="accordion-list">
+    <ion-list-header no-lines no-padding>
+      <button ion-item detail-none
+              
+              (click)="toggleAccordion()"
+              class="accordion-header"
+              [class.active]="expanded">
+         
+          {{ title }} &nbsp;र{{ amount }}
+
+
+          <ion-icon
+          item-end
+          class="nostyle"
+          name="ios-arrow-forward">
+        </ion-icon>
+      </button>
+      <section #accordionContent
+               [style.background]="contentColor"
+               [class.active]="expanded"
+               class="accordion-content">
+        <ng-content></ng-content>
+      </section>
+    </ion-list-header>
+  </ion-list>
+  

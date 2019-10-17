@@ -1,0 +1,43 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Category</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+    <form [formGroup]="categoryForm" (ngSubmit)="saveData()">
+
+        <ion-item no-lines>
+            <ion-label stacked>Category Name <span class="required">*</span></ion-label>
+            <ion-input class="formstyling" type="text" placeholder="" formControlName="name" name="name"></ion-input>
+          </ion-item>
+
+
+        <ion-item no-lines>
+            <ion-label stacked>Icon <span class="required">*</span></ion-label>
+            <ion-input class="formstyling" (tap)="openIcon()" placeholder="" formControlName="icon" name="icon" readonly></ion-input>
+        </ion-item>
+
+        <ion-item no-lines>
+          <ion-label stacked>Type <span class="required">*</span></ion-label>
+          <ion-select class="formstyling" formControlName="typename" name="typename" (ionChange)="typeSelected($event)">
+            <ion-option value="income">Income</ion-option>
+            <ion-option value="expense">Expense</ion-option>
+          </ion-select>
+        </ion-item>
+
+
+        <ion-item class="center" no-lines>
+          <button ion-button round type="submit" [disabled]="categoryForm.invalid">Save Data</button>
+        </ion-item>
+
+      </form>
+
+
+</ion-content>
